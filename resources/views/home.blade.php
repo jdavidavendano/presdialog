@@ -14,7 +14,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <a href="{{url('records')}}"><Button>Records</Button></a>
                 </div>
             </div>
         </div>
