@@ -80,7 +80,9 @@ class RecordController extends Controller
      */
     public function edit($id)
     {
-        //
+        $record = Record::find($id);
+
+        return view('records.edit', compact('record'));
     }
 
     /**
@@ -92,7 +94,22 @@ class RecordController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'glucose'=>'integer',
+            'insulin'=> 'integer',
+            'carbohydrates' => 'integer'
+          ]);
+    
+        $record = Record::find($id);
+        
+        $record->glucose = $request->get('glucose');
+        $record->insulin = $request->get('insulin');
+        $record->carbohydrates = $request->get('carbohydrates');
+        $record->description = $request->get('description');
+        $record->date = $request->get('date');
+        $record->save();
+    
+        return redirect('/records')->with('success', 'Record has been updated');
     }
 
     /**
@@ -103,6 +120,9 @@ class RecordController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $record = Record::find($id);
+        $record->delete();
+
+        return redirect('/records')->with('success', 'Record has been deleted Successfully');
     }
 }
