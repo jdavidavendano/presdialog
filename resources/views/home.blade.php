@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    <a href="{{url('records')}}"><Button>Records</Button></a>
+                    <a href="{{url('records')}}" class="btn btn-primary">Records</a>
+                    <a href="{{ route('records.create')}}" class="btn btn-primary">Add record</a>
                 </div>
             </div>
         </div>

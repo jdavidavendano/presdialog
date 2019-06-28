@@ -38,9 +38,10 @@ class RecordController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'glucose'=>'integer',
-            'insulin'=> 'integer',
-            'carbohydrates' => 'integer'
+            'glucose' => 'required_without_all:insulin,carbohydrates|nullable|integer',
+            'insulin' => 'required_without_all:glucose,carbohydrates|nullable|integer',
+            'carbohydrates' => 'required_without_all:glucose,insulin|nullable|integer',
+            'date' => 'required',
         ]);
 
         /*$rules = array(
@@ -95,9 +96,10 @@ class RecordController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'glucose'=>'integer',
-            'insulin'=> 'integer',
-            'carbohydrates' => 'integer'
+            'glucose' => 'required_without_all:insulin,carbohydrates|nullable|integer',
+            'insulin' => 'required_without_all:glucose,carbohydrates|nullable|integer',
+            'carbohydrates' => 'required_without_all:glucose,insulin|nullable|integer',
+            'date' => 'required',
           ]);
     
         $record = Record::find($id);

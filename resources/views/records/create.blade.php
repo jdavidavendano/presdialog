@@ -42,7 +42,7 @@
               <label for="date">Date and time:</label>
               <input type="datetime-local" class="form-control" name="date"/>
           </div>
-          <button type="submit" class="btn btn-primary">Add</button>
+          <button type="submit" class="btn btn-primary">Add record</button>
           <a href="{{ url('records')}}" class="btn btn-danger">Cancel</a>
       </form>
   </div>

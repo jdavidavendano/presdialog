@@ -17,10 +17,10 @@ class CreateRecordsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
 
-            $table->integer('glucose');
-            $table->integer('insulin');
-            $table->integer('carbohydrates');
-            $table->string('description');
+            $table->integer('glucose')->nullable();
+            $table->integer('insulin')->nullable();
+            $table->integer('carbohydrates')->nullable();
+            $table->string('description')->nullable();
             $table->dateTime('date');
         });
     }
