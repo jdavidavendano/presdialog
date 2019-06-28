@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
 <style>
@@ -12,6 +12,11 @@
       {{ session()->get('success') }}  
     </div><br />
   @endif
+  <br>
+  <br>
+  <h2> Records </h2>
+  <br>
+  <br>
   <a href="{{ route('records.create')}}" class="btn btn-primary">Create</a>
   <br>
   <br>
