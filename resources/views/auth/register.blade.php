@@ -81,7 +81,7 @@
 
                             <div class="col-md-6">
                                 <select id="role" name="role" class="form-control">
-                                    <option value="Paciente">Pacient</option>
+                                    <option value="Paciente">Patient</option>
                                     <option value="Medico">Medic</option>
                                     <option value="Enfermera">Nurse</option>
                                 </select>
