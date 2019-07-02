@@ -22,6 +22,8 @@ class CreateRecordsTable extends Migration
             $table->integer('carbohydrates')->nullable();
             $table->string('description')->nullable();
             $table->dateTime('date');
+            $table->string('username');
+            $table->foreign('username')->references('username')->on('users');
         });
     }
 

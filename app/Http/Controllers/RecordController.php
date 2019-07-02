@@ -52,19 +52,13 @@ class RecordController extends Controller
             'date' => 'required',
         ]);
 
-        /*$rules = array(
-            'glucose' => 'required_without_all:insulin,carbohydrates',
-            'insulin' => 'required_without_all:glucose,carbohydrates',
-            'carbohydrates' => 'required_without_all:insulin,glucose',
-        );
-        $validator = Validator::make(Input::all(), $rules);*/
-
         $record = new Record([
             'glucose' => $request->get('glucose'),
             'insulin' => $request->get('insulin'),
             'carbohydrates' => $request->get('carbohydrates'),
             'description' => $request->get('description'),
-            'date' => $request->get('date')
+            'date' => $request->get('date'),
+            'username' => $request->user()->username
         ]);
         $record -> save();
         return redirect('/records')->with('Success', 'Record added');

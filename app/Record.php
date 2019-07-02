@@ -11,6 +11,7 @@ class Record extends Model
         'insulin',
         'carbohydrates',
         'description',
-        'date'
+        'date',
+        'username'
     ];
 }
