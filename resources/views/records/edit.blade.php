@@ -25,19 +25,19 @@
             @csrf
             <div class="form-group">
                 <label for="glucose">Glucose:</label>
-                <input type="text" class="form-control" name="glucose" value={{ $record->glucose }} />
+                <input type="text" class="form-control" name="glucose" value="{{ $record->glucose }}"/>
             </div>
             <div class="form-group">
                 <label for="insulin">Insulin:</label>
-                <input type="text" class="form-control" name="insulin" value={{ $record->insulin }} />
+                <input type="text" class="form-control" name="insulin" value="{{ $record->insulin }}"/>
             </div>
             <div class="form-group">
                 <label for="carbohydrates">Carbohydrates:</label>
-                <input type="text" class="form-control" name="carbohydrates" value={{ $record->carbohydrates }} />
+                <input type="text" class="form-control" name="carbohydrates" value="{{ $record->carbohydrates }}"/>
             </div>
             <div class="form-group">
                 <label for="description">Description:</label>
-                <input type="text" class="form-control" name="description" value={{ $record->description }} />
+                <input type="text" class="form-control" name="description" value="{{ $record->description }}"/>
             </div>
             <div class="form-group">
               <label for="date">Date and time:</label>

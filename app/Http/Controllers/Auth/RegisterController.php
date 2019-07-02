@@ -71,7 +71,11 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'username' => $data['username']
         ]);
-        $user->roles()->attach(Role::where('name', $data['role'])->first());
+        if($data['role'] == "Paciente" || $data['role'] == "Medico" || $data['role'] == "Enfermera"){
+            $user->roles()->attach(Role::where('name', $data['role'])->first());
+        }else{
+            abort(403, "Form modified");
+        }
 
         return $user;
     }
