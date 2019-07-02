@@ -40,7 +40,8 @@
           </div>
           <div class="form-group">
               <label for="date">Date and time:</label>
-              <input type="datetime-local" class="form-control" name="date"/>
+              <input type="date" class="form-control" name="date" value="<?php echo date('Y-m-d'); ?>"/>
+              <input type="time" class="form-control" name="time" value="<?php echo date("H:m"); ?>"/>
           </div>
           <button type="submit" class="btn btn-primary">Add record</button>
           <a href="{{ url('records')}}" class="btn btn-danger">Cancel</a>

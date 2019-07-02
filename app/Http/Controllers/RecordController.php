@@ -63,7 +63,7 @@ class RecordController extends Controller
             'insulin' => $request->get('insulin'),
             'carbohydrates' => $request->get('carbohydrates'),
             'description' => $request->get('description'),
-            'date' => $request->get('date'),
+            'date' => $request->get('date').' '.$request->get('time'),
             'username' => $request->user()->username
         ]);
         $record -> save();
@@ -116,7 +116,7 @@ class RecordController extends Controller
         $record->insulin = $request->get('insulin');
         $record->carbohydrates = $request->get('carbohydrates');
         $record->description = $request->get('description');
-        $record->date = $request->get('date');
+        $record->date = $request->get('date').' '.$request->get('time');
         $record->save();
     
         return redirect('/records')->with('success', 'Record has been updated');
