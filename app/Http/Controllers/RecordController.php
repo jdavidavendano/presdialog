@@ -22,6 +22,12 @@ class RecordController extends Controller
     {
         $records = Record::all();
 
+        foreach ($records as $i => $value) {
+            if($value['username'] != $request->user()->username){
+                unset($records[$i]);
+            }            
+        }
+
         //$request->user()->authorizeRoles(['user', 'Paciente']);
 
         return view('records.index', compact('records'));
