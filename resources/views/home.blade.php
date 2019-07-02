@@ -14,8 +14,12 @@
                         </div>
                     @endif
 
-                    <a href="{{url('records')}}" class="btn btn-primary">Records</a>
-                    <a href="{{ route('records.create')}}" class="btn btn-primary">Add record</a>
+                    @if (Auth::user()->hasRole('Paciente'))
+                        <a href="{{url('records')}}" class="btn btn-primary">Records</a>
+                        <a href="{{ route('records.create')}}" class="btn btn-primary">Add record</a>
+                    @else
+                        <p>You're not pacient (Work in progress)</p>
+                    @endif
                 </div>
             </div>
         </div>
