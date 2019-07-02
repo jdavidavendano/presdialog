@@ -15,13 +15,14 @@ class RecordController extends Controller
 
     public function __construct(){
         $this->middleware('auth');
+        $this->middleware('role:Paciente');
     }
 
     public function index(Request $request)
     {
         $records = Record::all();
 
-        $request->user()->authorizeRoles(['user', 'Paciente']);
+        //$request->user()->authorizeRoles(['user', 'Paciente']);
 
         return view('records.index', compact('records'));
     }
