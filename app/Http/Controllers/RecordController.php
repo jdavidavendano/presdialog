@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Record;
+use App\Charts\report;
 
 class RecordController extends Controller
 {
@@ -18,9 +19,9 @@ class RecordController extends Controller
         $this->middleware('role:Paciente');
     }
 
-    public function index(Request $request)
-    {
-        $records = Record::all();
+    public function getRecordsByUser($request){
+        //$records = Record::all();
+        $records = Record::select()->orderby('date')->get();
 
         foreach ($records as $i => $value) {
             if($value['username'] != $request->user()->username){
@@ -28,6 +29,19 @@ class RecordController extends Controller
             }            
         }
 
+        return $records;
+    }
+
+    public function index(Request $request)
+    {
+        $records = RecordController::getRecordsByUser($request);
+        
+        foreach ($records as $i => $value) {
+            if($value['username'] != $request->user()->username){
+                unset($records[$i]);
+            }            
+        }
+        
         //$request->user()->authorizeRoles(['user', 'Paciente']);
 
         return view('records.index', compact('records'));
@@ -135,4 +149,57 @@ class RecordController extends Controller
 
         return redirect('/records')->with('success', 'Record has been deleted Successfully');
     }
+
+    public function report(Request $request)
+    {
+        $records = RecordController::getRecordsByUser($request);
+
+        $labelInsulin = array();
+        $valuesInsulin = array();
+
+        $labelGlucose = array();
+        $valuesGlucose = array();
+
+        $labelCarbohydrates = array();
+        $valuesCarbohydrates = array();
+
+        foreach ($records as $record => $value) {
+
+            if($value['insulin'] != null){
+                array_push($labelInsulin, $value['date']);
+                array_push($valuesInsulin, $value['insulin']);
+            }
+
+            if($value['glucose'] != null){
+                array_push($labelGlucose, $value['date']);
+                array_push($valuesGlucose, $value['glucose']);
+            }
+
+            if($value['carbohydrates'] != null){
+                array_push($labelCarbohydrates, $value['date']);
+                array_push($valuesCarbohydrates, $value['carbohydrates']);
+            }
+        }
+
+        $chartInsulin = new report;
+        $chartGlucose = new report;
+        $chartCarbohydrates = new report;
+
+        if (count($valuesInsulin) == 0) {
+            $emptyInsulin = true;
+        }
+
+        $chartInsulin->labels($labelInsulin);
+        $chartInsulin->dataset('Insulin', 'line', $valuesInsulin)->color('#FF6600');
+        
+        $chartGlucose->labels($labelGlucose);
+        $chartGlucose->dataset('Glucose', 'line', $valuesGlucose)->color('#00FF00');
+        
+        $chartCarbohydrates->labels($labelCarbohydrates);
+        $chartCarbohydrates->dataset('Carbohydrates', 'line', $valuesCarbohydrates)->color('#0000FF');
+        //$request->user()->authorizeRoles(['user', 'Paciente']);
+
+        return view('records.report', compact('records', 'chartInsulin', 'chartGlucose', 'chartCarbohydrates', 'valuesInsulin', 'valuesGlucose', 'valuesCarbohydrates'));
+    }
+
 }
