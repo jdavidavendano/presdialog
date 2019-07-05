@@ -6,6 +6,9 @@
     margin-top: 40px;
   }
 </style>
+<head>
+  <title>Create new record</title>
+</head>
 <div class="card uper">
   <div class="card-header">
     Add Record

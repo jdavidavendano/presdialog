@@ -8,10 +8,13 @@
     margin-top: 40px;
   }
 </style>
+<head>
+  <title>Report</title>
+</head>
 <div class="uper">
   @if(session()->get('success'))
     <div class="alert alert-success">
-      {{ session()->get('success') }}  
+      {{ session()->get('success') }}
     </div><br />
   @endif
   <br>
@@ -34,7 +37,7 @@
   </div>
   <section id="insulinSection">
     @if (count($valuesInsulin) === 0)
-        <p class='p-3 mb-2 bg-danger text-white text-center'>There are no records to create a report</p> 
+        <p class='p-3 mb-2 bg-danger text-white text-center'>There are no records to create a report</p>
     @endif
     <div style="width=50vw; height=80vh;">
         {!! $chartInsulin->container() !!}
@@ -43,7 +46,7 @@
   </section>
   <section id="glucoseSection">
     @if (count($valuesInsulin) === 0)
-        <p class='p-3 mb-2 bg-danger text-white text-center'>There are no records to create a report</p> 
+        <p class='p-3 mb-2 bg-danger text-white text-center'>There are no records to create a report</p>
     @endif
     <div style="width=50vw; height=80vh;">
         {!! $chartGlucose->container() !!}
@@ -52,7 +55,7 @@
   </section>
   <section id="carbohydratesSection">
     @if (count($valuesInsulin) === 0)
-        <p class='p-3 mb-2 bg-danger text-white text-center'>There are no records to create a report</p>  
+        <p class='p-3 mb-2 bg-danger text-white text-center'>There are no records to create a report</p>
     @endif
     <div style="width=50vw; height=80vh;">
         {!! $chartCarbohydrates->container() !!}

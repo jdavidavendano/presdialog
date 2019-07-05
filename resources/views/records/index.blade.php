@@ -8,6 +8,9 @@
     margin-top: 40px;
   }
 </style>
+<head>
+  <title>Records</title>
+</head>
 <div class="uper">
   @if(session()->get('success'))
     <div class="alert alert-success">
