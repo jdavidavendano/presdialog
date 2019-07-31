@@ -45,7 +45,7 @@
     </div>
   </section>
   <section id="glucoseSection">
-    @if (count($valuesInsulin) === 0)
+    @if (count($valuesGlucose) === 0)
         <p class='p-3 mb-2 bg-danger text-white text-center'>There are no records to create a report</p>
     @endif
     <div style="width=50vw; height=80vh;">
@@ -54,7 +54,7 @@
     </div>
   </section>
   <section id="carbohydratesSection">
-    @if (count($valuesInsulin) === 0)
+    @if (count($valuesCarbohydrates) === 0)
         <p class='p-3 mb-2 bg-danger text-white text-center'>There are no records to create a report</p>
     @endif
     <div style="width=50vw; height=80vh;">
