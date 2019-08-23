@@ -19,7 +19,7 @@ class CreateMedicalRsTable extends Migration
             $table->string('gender');
             $table->date('birthDate');
             $table->string('bloodType');
-            $table->foreign('email')->references('users')->on('email');
+            $table->foreign('email')->references('email')->on('users');
             $table->timestamps();
         });
     }
