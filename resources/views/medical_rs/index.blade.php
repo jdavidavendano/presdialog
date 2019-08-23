@@ -31,14 +31,16 @@
             <td>{{$medical_r->gender}}</td>
             <td>{{$medical_r->birthDate}}</td>
             <td>{{$medical_r->bloodType}}</td>
-
             <td>
-                <form action="{{ route('medical_rs.destroy', $medical_r->id)}}" method="post">
-                  @csrf
-                  @method('DELETE')
-                  <button class="btn btn-danger" type="submit">Delete</button>
-                </form>
+                @if (Auth::user()->hasRole('Medico'))
+                    <a href="{{url('medical_rs')}}" class="btn btn-primary">Add treatment</a>
+                    <a href="{{url('medical_rs')}}" class="btn btn-primary">Add afliction</a>
+                @else 
+                    <a href="{{url('medical_rs')}}" class="btn btn-primary">Add symptom</a>
+                @endif
             </td>
+
+            
         </tr>
         @endforeach
     </tbody>

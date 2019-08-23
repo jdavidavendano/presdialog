@@ -23,9 +23,8 @@
                     @elseif (Auth::user()->hasRole('Medico'))
                         <a href="{{url('medical_rs')}}" class="btn btn-primary">Medical records</a>
                         <a href="{{ route('medical_rs.create')}}" class="btn btn-primary">Create medical record</a>
-                        
                     @else 
-                        <p>Hi {{ Auth::user()->username }} you're not patient (Work in progress).</p>
+                        <a href="{{url('medical_rs')}}" class="btn btn-primary">Medical records</a>
                     @endif
                 </div>
             </div>

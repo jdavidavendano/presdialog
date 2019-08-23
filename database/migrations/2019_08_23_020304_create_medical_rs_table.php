@@ -15,7 +15,7 @@ class CreateMedicalRsTable extends Migration
     {
         Schema::create('medical_rs', function (Blueprint $table) {
             $table->integer('id')->primary();
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('gender');
             $table->date('birthDate');
             $table->string('bloodType');

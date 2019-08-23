@@ -103,6 +103,6 @@ class Medical_rController extends Controller
         $medical_r = Medical_r::find($id);
         $medical_r->delete();
 
-        return redirect('/medical_rs')->with('success', 'Stock has been deleted Successfully');
+        return redirect('/medical_rs')->with('success', 'Medical record has been deleted Successfully');
     }
 }
