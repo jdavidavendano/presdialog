@@ -51,7 +51,7 @@ class DiagnosticController extends Controller
             'treatment'=> $request->get('treatment')
           ]);
           $diagnostic->save();
-          return redirect('/diagnostics')->with('success', 'Diagnostic has been added');
+          return redirect('home')->with('success', 'Diagnostic has been added');
     }
 
     /**

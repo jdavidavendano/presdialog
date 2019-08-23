@@ -20,9 +20,12 @@
                     @if (Auth::user()->hasRole('Paciente'))
                         <a href="{{url('records')}}" class="btn btn-primary">Records</a>
                         <a href="{{ route('records.create')}}" class="btn btn-primary">Add record</a>
-                    @elseif (Auth::user()->hasRole('Medico'))
+                    @elseif (Auth::user()->hasRole('Medico') or Auth::user()->hasRole('Enfermera'))
                         <a href="{{url('medical_rs')}}" class="btn btn-primary">Medical records</a>
-                        <a href="{{ route('medical_rs.create')}}" class="btn btn-primary">Create medical record</a>
+                        @if (Auth::user()->hasRole('Medico'))
+                            <a href="{{ route('medical_rs.create')}}" class="btn btn-primary">Create medical record</a>
+                        @endif
+                        <a href="{{ route('diagnostics.create')}}" class="btn btn-primary">Create diagnostic</a>
                     @else 
                         <a href="{{url('medical_rs')}}" class="btn btn-primary">Medical records</a>
                     @endif
