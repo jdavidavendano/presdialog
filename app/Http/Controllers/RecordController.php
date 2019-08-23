@@ -26,7 +26,7 @@ class RecordController extends Controller
         foreach ($records as $i => $value) {
             if($value['username'] != $request->user()->username){
                 unset($records[$i]);
-            }            
+            }
         }
 
         return $records;
@@ -35,13 +35,13 @@ class RecordController extends Controller
     public function index(Request $request)
     {
         $records = RecordController::getRecordsByUser($request);
-        
+
         foreach ($records as $i => $value) {
             if($value['username'] != $request->user()->username){
                 unset($records[$i]);
-            }            
+            }
         }
-        
+
         //$request->user()->authorizeRoles(['user', 'Paciente']);
 
         return view('records.index', compact('records'));
@@ -66,9 +66,9 @@ class RecordController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'glucose' => 'required_without_all:insulin,carbohydrates|nullable|integer',
-            'insulin' => 'required_without_all:glucose,carbohydrates|nullable|integer',
-            'carbohydrates' => 'required_without_all:glucose,insulin|nullable|integer',
+            'glucose' => 'required_without_all:insulin,carbohydrates|nullable|integer|min:0|max:500',
+            'insulin' => 'required_without_all:glucose,carbohydrates|nullable|integer|min:0|max:200',
+            'carbohydrates' => 'required_without_all:glucose,insulin|nullable|integer|min:0',
             'date' => 'required',
         ]);
 
@@ -118,21 +118,21 @@ class RecordController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'glucose' => 'required_without_all:insulin,carbohydrates|nullable|integer',
-            'insulin' => 'required_without_all:glucose,carbohydrates|nullable|integer',
-            'carbohydrates' => 'required_without_all:glucose,insulin|nullable|integer',
+            'glucose' => 'required_without_all:insulin,carbohydrates|nullable|integer|min:0|max:500',
+            'insulin' => 'required_without_all:glucose,carbohydrates|nullable|integer|min:0|max:200',
+            'carbohydrates' => 'required_without_all:glucose,insulin|nullable|integer|min:0',
             'date' => 'required',
           ]);
-    
+
         $record = Record::find($id);
-        
+
         $record->glucose = $request->get('glucose');
         $record->insulin = $request->get('insulin');
         $record->carbohydrates = $request->get('carbohydrates');
         $record->description = $request->get('description');
         $record->date = $request->get('date').' '.$request->get('time');
         $record->save();
-    
+
         return redirect('/records')->with('success', 'Record has been updated');
     }
 
@@ -191,10 +191,10 @@ class RecordController extends Controller
 
         $chartInsulin->labels($labelInsulin);
         $chartInsulin->dataset('Insulin', 'line', $valuesInsulin)->color('#FF6600');
-        
+
         $chartGlucose->labels($labelGlucose);
         $chartGlucose->dataset('Glucose', 'line', $valuesGlucose)->color('#00FF00');
-        
+
         $chartCarbohydrates->labels($labelCarbohydrates);
         $chartCarbohydrates->dataset('Carbohydrates', 'line', $valuesCarbohydrates)->color('#0000FF');
         //$request->user()->authorizeRoles(['user', 'Paciente']);
