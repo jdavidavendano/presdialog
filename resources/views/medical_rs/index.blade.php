@@ -33,10 +33,7 @@
             <td>{{$medical_r->bloodType}}</td>
             <td>
                 @if (Auth::user()->hasRole('Medico'))
-                    <a href="{{url('medical_rs')}}" class="btn btn-primary">Add treatment</a>
-                    <a href="{{url('medical_rs')}}" class="btn btn-primary">Add afliction</a>
-                @else 
-                    <a href="{{url('medical_rs')}}" class="btn btn-primary">Add symptom</a>
+                    <a href="{{route('diagnostics.show', $medical_r->id)}}" class="btn btn-primary">Check</a>
                 @endif
             </td>
 
