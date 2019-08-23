@@ -33,6 +33,9 @@
                     @if (Auth::user()->hasRole('Paciente'))
                         <a href="{{url('records')}}" class="btn">Records</a>
                         <a href="{{ url('records/report') }}" class="btn">Report</a>
+                    @elseif (Auth::user()->hasRole('Medico'))
+                        <a href="{{url('medical_rs')}}" class="btn">Medical records</a>
+                        <a href="{{ route('medical_rs.create')}}" class="btn">Create medical record</a>
                     @endif
                 @endguest
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

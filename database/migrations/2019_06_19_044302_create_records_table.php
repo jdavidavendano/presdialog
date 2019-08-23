@@ -16,7 +16,6 @@ class CreateRecordsTable extends Migration
         Schema::create('records', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-
             $table->integer('glucose')->nullable();
             $table->integer('insulin')->nullable();
             $table->integer('carbohydrates')->nullable();

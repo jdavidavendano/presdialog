@@ -20,3 +20,4 @@ Auth::routes(['reset' => false]);
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('records/report', 'RecordController@report');
 Route::resource('records', 'RecordController');
+Route::resource('medical_rs', 'Medical_rController');
